@@ -1,16 +1,14 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-  Shield, 
   AlertTriangle, 
   UserCheck,
-  Lock,
   Server,
   Wifi,
   AlertCircle,
   Search,
-  Filter
+  Filter 
 } from 'lucide-react';
 
 interface SecurityEvent {
@@ -23,26 +21,32 @@ interface SecurityEvent {
   source: string;
 }
 
+interface Filters {
+  severity: string[];
+  type: string[];
+  source: string[];
+}
+
 const SecurityEvents = () => {
   const [events, setEvents] = useState<SecurityEvent[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filters, setFilters] = useState({
-    severity: [] as string[],
-    type: [] as string[],
-    source: [] as string[]
-  });
   const [showFilters, setShowFilters] = useState(false);
+  const [filters, setFilters] = useState<Filters>({
+    severity: [],
+    type: [],
+    source: []
+  });
 
-  // Simulated WebSocket connection (replace with real WebSocket implementation)
   useEffect(() => {
-    const mockEvents: SecurityEvent[] = [
+    // Simulate initial events
+    const initialEvents: SecurityEvent[] = [
       {
         id: '1',
         type: 'alert',
         severity: 'critical',
         title: 'Unauthorized Access Attempt',
-        description: 'Multiple failed login attempts detected from IP 192.168.1.100',
+        description: 'Multiple failed login attempts from IP 192.168.1.100',
         timestamp: new Date().toLocaleTimeString(),
         source: 'AWS WAF'
       },
@@ -51,7 +55,7 @@ const SecurityEvents = () => {
         type: 'network',
         severity: 'high',
         title: 'Suspicious Network Traffic',
-        description: 'Unusual outbound traffic pattern detected on production server',
+        description: 'Unusual outbound traffic pattern detected',
         timestamp: new Date().toLocaleTimeString(),
         source: 'AWS GuardDuty'
       },
@@ -60,21 +64,21 @@ const SecurityEvents = () => {
         type: 'system',
         severity: 'medium',
         title: 'System Configuration Change',
-        description: 'Security group configuration modified in production environment',
+        description: 'Security group configuration modified',
         timestamp: new Date().toLocaleTimeString(),
         source: 'AWS CloudTrail'
       }
     ];
 
-    setEvents(mockEvents);
-    
-    // Simulate real-time updates
+    setEvents(initialEvents);
+    setLoading(false);
+
     const interval = setInterval(() => {
       const newEvent: SecurityEvent = {
         id: Date.now().toString(),
-        type: ['alert', 'auth', 'system', 'network'][Math.floor(Math.random() * 4)] as any,
-        severity: ['critical', 'high', 'medium', 'low'][Math.floor(Math.random() * 4)] as any,
-        title: 'New Security Alert',
+        type: ['alert', 'auth', 'system', 'network'][Math.floor(Math.random() * 4)] as SecurityEvent['type'],
+        severity: ['critical', 'high', 'medium', 'low'][Math.floor(Math.random() * 4)] as SecurityEvent['severity'],
+        title: 'New Security Event',
         description: 'Real-time security event detected',
         timestamp: new Date().toLocaleTimeString(),
         source: ['AWS WAF', 'AWS GuardDuty', 'AWS CloudTrail'][Math.floor(Math.random() * 3)]
@@ -85,19 +89,7 @@ const SecurityEvents = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const filteredEvents = events.filter(event => {
-    const matchesSearch = 
-      event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      event.description.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesSeverity = filters.severity.length === 0 || filters.severity.includes(event.severity);
-    const matchesType = filters.type.length === 0 || filters.type.includes(event.type);
-    const matchesSource = filters.source.length === 0 || filters.source.includes(event.source);
-
-    return matchesSearch && matchesSeverity && matchesType && matchesSource;
-  });
-
-  const toggleFilter = (category: keyof typeof filters, value: string) => {
+  const toggleFilter = (category: keyof Filters, value: string) => {
     setFilters(prev => ({
       ...prev,
       [category]: prev[category].includes(value)
@@ -136,6 +128,18 @@ const SecurityEvents = () => {
     }
   };
 
+  const filteredEvents = events.filter(event => {
+    const matchesSearch = 
+      event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      event.description.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesSeverity = filters.severity.length === 0 || filters.severity.includes(event.severity);
+    const matchesType = filters.type.length === 0 || filters.type.includes(event.type);
+    const matchesSource = filters.source.length === 0 || filters.source.includes(event.source);
+
+    return matchesSearch && matchesSeverity && matchesType && matchesSource;
+  });
+
   return (
     <div className="bg-white rounded-lg shadow-sm border border-slate-200">
       <div className="p-4 border-b border-slate-200">
@@ -147,7 +151,7 @@ const SecurityEvents = () => {
               className="px-3 py-1 text-sm bg-indigo-50 text-indigo-700 rounded-md hover:bg-indigo-100 flex items-center"
             >
               <Filter className="w-4 h-4 mr-1" />
-              Filters
+              Filters {showFilters ? '▼' : '▶'}
             </button>
             <button 
               onClick={() => setEvents([])}
@@ -170,44 +174,61 @@ const SecurityEvents = () => {
         </div>
 
         {showFilters && (
-          <div className="mt-4 p-4 bg-slate-50 rounded-md">
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-sm font-medium text-slate-700 mb-2">Severity</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['critical', 'high', 'medium', 'low'].map(severity => (
-                    <button
-                      key={severity}
-                      onClick={() => toggleFilter('severity', severity)}
-                      className={`px-2 py-1 rounded text-xs font-medium ${
-                        filters.severity.includes(severity)
-                          ? 'bg-indigo-600 text-white'
-                          : 'bg-white text-slate-700 border border-slate-300'
-                      }`}
-                    >
-                      {severity.charAt(0).toUpperCase() + severity.slice(1)}
-                    </button>
-                  ))}
-                </div>
+          <div className="mt-4 p-4 bg-slate-50 rounded-md space-y-4">
+            <div>
+              <h3 className="text-sm font-medium text-slate-700 mb-2">Severity</h3>
+              <div className="flex flex-wrap gap-2">
+                {['critical', 'high', 'medium', 'low'].map(severity => (
+                  <button
+                    key={severity}
+                    onClick={() => toggleFilter('severity', severity)}
+                    className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+                      filters.severity.includes(severity)
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50'
+                    }`}
+                  >
+                    {severity.charAt(0).toUpperCase() + severity.slice(1)}
+                  </button>
+                ))}
               </div>
+            </div>
 
-              <div>
-                <h3 className="text-sm font-medium text-slate-700 mb-2">Type</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['alert', 'auth', 'system', 'network'].map(type => (
-                    <button
-                      key={type}
-                      onClick={() => toggleFilter('type', type)}
-                      className={`px-2 py-1 rounded text-xs font-medium ${
-                        filters.type.includes(type)
-                          ? 'bg-indigo-600 text-white'
-                          : 'bg-white text-slate-700 border border-slate-300'
-                      }`}
-                    >
-                      {type.charAt(0).toUpperCase() + type.slice(1)}
-                    </button>
-                  ))}
-                </div>
+            <div>
+              <h3 className="text-sm font-medium text-slate-700 mb-2">Type</h3>
+              <div className="flex flex-wrap gap-2">
+                {['alert', 'auth', 'system', 'network'].map(type => (
+                  <button
+                    key={type}
+                    onClick={() => toggleFilter('type', type)}
+                    className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+                      filters.type.includes(type)
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50'
+                    }`}
+                  >
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-medium text-slate-700 mb-2">Source</h3>
+              <div className="flex flex-wrap gap-2">
+                {['AWS WAF', 'AWS GuardDuty', 'AWS CloudTrail'].map(source => (
+                  <button
+                    key={source}
+                    onClick={() => toggleFilter('source', source)}
+                    className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+                      filters.source.includes(source)
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50'
+                    }`}
+                  >
+                    {source}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
