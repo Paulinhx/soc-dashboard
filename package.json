@@ -11,9 +11,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-cloudtrail": "^3.750.0",
     "@aws-sdk/client-cloudwatch-logs": "^3.750.0",
     "@aws-sdk/client-cognito-identity-provider": "^3.750.0",
     "@aws-sdk/client-dynamodb": "^3.751.0",
+    "@aws-sdk/client-guardduty": "^3.753.0",
+    "@aws-sdk/client-wafv2": "^3.750.0",
     "@aws-sdk/lib-dynamodb": "^3.751.0",
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-slot": "^1.1.2",

@@ -1,17 +1,31 @@
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+import { WAFv2Client } from "@aws-sdk/client-wafv2";
+import { GuardDutyClient } from "@aws-sdk/client-guardduty";
+import { CloudTrailClient } from "@aws-sdk/client-cloudtrail";
 
-// Configure AWS credentials
-const client = new DynamoDBClient({
-  region: process.env.NEXT_PUBLIC_AWS_REGION, // Use NEXT_PUBLIC_ for client-side access
+// AWS Clients Configuration
+export const wafClient = new WAFv2Client({
+  region: process.env.NEXT_PUBLIC_AWS_REGION,
   credentials: {
     accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID || '',
     secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY || ''
   }
 });
 
-// Create the DynamoDB Document Client
-export const dynamoDBClient = DynamoDBDocumentClient.from(client);
+export const guardDutyClient = new GuardDutyClient({
+  region: process.env.NEXT_PUBLIC_AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY || ''
+  }
+});
+
+export const cloudTrailClient = new CloudTrailClient({
+  region: process.env.NEXT_PUBLIC_AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY || ''
+  }
+});
 
 // AWS Configuration Object
 export const awsConfig = {
