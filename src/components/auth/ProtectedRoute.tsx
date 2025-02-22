@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { AuthService } from '@/services/auth';
+import { AuthService } from '@/services/auth-services';
 import Login from './Login';
 
 export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
