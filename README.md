@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SOC Security Dashboard
 
-## Getting Started
+A modern Security Operations Center (SOC) dashboard built with Next.js, featuring real-time security event monitoring, AWS integration, and Cognito authentication.
 
-First, run the development server:
+## 🚀 Features
 
+- **Real-time Security Monitoring**
+  - Live security event updates
+  - Event filtering and search
+  - Severity-based categorization
+
+- **AWS Integration**
+  - GuardDuty integration
+  - SecurityHub integration
+  - CloudWatch Logs monitoring
+
+- **Authentication & Security**
+  - AWS Cognito authentication
+  - Protected routes
+  - Secure session management
+
+- **Modern UI/UX**
+  - Responsive design
+  - Dark/light mode support
+  - Interactive data visualization
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js, React, TypeScript
+- **Styling:** Tailwind CSS
+- **Authentication:** AWS Cognito
+- **Cloud Services:** AWS GuardDuty, SecurityHub
+- **Real-time Updates:** WebSocket
+
+## 📦 Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/soc-dashboard.git
+cd soc-dashboard
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+Create a `.env.local` file in the root directory with the following variables:
+```env
+NEXT_PUBLIC_AWS_REGION=your-region
+NEXT_PUBLIC_COGNITO_USER_POOL_ID=your-user-pool-id
+NEXT_PUBLIC_COGNITO_CLIENT_ID=your-client-id
+NEXT_PUBLIC_GUARDDUTY_DETECTOR_ID=your-detector-id
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+## 🔧 Configuration
 
-To learn more about Next.js, take a look at the following resources:
+### AWS Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Create a Cognito User Pool
+2. Set up GuardDuty
+3. Configure SecurityHub
+4. Update environment variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Authentication
 
-## Deploy on Vercel
+The dashboard uses AWS Cognito for authentication. Ensure you have:
+- Configured Cognito User Pool
+- Set up App Client
+- Updated environment variables
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚦 Usage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Start the development server:
+```bash
+npm run dev
+```
+
+2. Open [http://localhost:3000](http://localhost:3000) in your browser
+3. Log in using your Cognito credentials
+4. Monitor security events in real-time
+
+## 📱 Screenshots
+
+[Add screenshots of your dashboard here]
+
+## 🤝 Contributing
+
+Contributions are not opened yet!
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## 📧 Contact
+
+Your Name - Paul D.
+Project Link: [https://github.com/paulinhx/soc-dashboard](https://github.com/your-username/soc-dashboard)
+
+## 🙏 Acknowledgments
+
+- AWS Documentation
+- Next.js Documentation
+- Tailwind CSS
