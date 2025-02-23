@@ -1,6 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
+import { Auth } from 'aws-amplify';
+import { signIn, signOut, getCurrentUser } from 'aws-amplify/auth';
 import { 
   Bell, 
   Shield, 
@@ -8,15 +10,39 @@ import {
   Settings, 
   Menu,
   AlertTriangle,
-  Clock,
-  UserX,
-  Wifi,
-  Server
+  LogOut,
+  
 } from 'lucide-react';
 import SecurityEvents from './SecurityEvents';
+import ErrorBoundary from '../ErrorBoundary';
 
-const DashboardLayout = () => {
-  const [sidebarOpen, setSidebarOpen] = React.useState(true);
+// Define interfaces for our components
+interface NavItemProps {
+  icon: React.ReactNode;
+  text: string;
+  active?: boolean;
+  expanded: boolean;
+}
+
+interface MetricCardProps {
+  title: string;
+  value: string;
+  icon: React.ReactNode;
+  color: string;
+  borderColor: string;
+}
+
+export default function DashboardLayout() {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  const handleLogout = async () => {
+    try {
+      await Auth.signOut();
+      window.location.reload();
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
 
   return (
     <div className="flex h-screen bg-slate-50">
@@ -37,6 +63,14 @@ const DashboardLayout = () => {
           <NavItem icon={<Bell />} text="Alerts" expanded={sidebarOpen} />
           <NavItem icon={<Shield />} text="Security" expanded={sidebarOpen} />
           <NavItem icon={<Settings />} text="Settings" expanded={sidebarOpen} />
+          
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center p-4 hover:bg-indigo-800 transition-colors rounded-lg mx-2 mt-auto"
+          >
+            <LogOut className="mr-3" size={20} />
+            {sidebarOpen && <span>Logout</span>}
+          </button>
         </nav>
       </div>
 
@@ -73,15 +107,17 @@ const DashboardLayout = () => {
           </div>
 
           {/* Security Events */}
-          <SecurityEvents />
+          <ErrorBoundary>
+            <SecurityEvents />
+          </ErrorBoundary>
         </main>
       </div>
     </div>
   );
-};
+}
 
 // Helper Components
-const NavItem = ({ icon, text, active = false, expanded = true }) => (
+const NavItem = ({ icon, text, active = false, expanded }: NavItemProps) => (
   <a
     href="#"
     className={`
@@ -95,7 +131,7 @@ const NavItem = ({ icon, text, active = false, expanded = true }) => (
   </a>
 );
 
-const MetricCard = ({ title, value, icon, color, borderColor }) => (
+const MetricCard = ({ title, value, icon, color, borderColor }: MetricCardProps) => (
   <div className={`rounded-lg shadow-sm border ${borderColor} ${color} p-6`}>
     <div className="flex items-center justify-between">
       <div>
@@ -106,5 +142,3 @@ const MetricCard = ({ title, value, icon, color, borderColor }) => (
     </div>
   </div>
 );
-
-export default DashboardLayout;
