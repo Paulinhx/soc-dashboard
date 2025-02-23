@@ -31,10 +31,16 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env
-.env.local
-.env.development
-.env.production
+.env         
+# Default variables (shared across environments)
+.env.local   
+# Local-only variables (ignored by Git)
+.env.development  
+# Development-specific
+.env.production   
+# Production-specific
+.env.test   
+# Testing-specific
 
 # vercel
 .vercel
