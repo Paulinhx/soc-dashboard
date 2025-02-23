@@ -1,108 +1,114 @@
-# SOC Security Dashboard
+# **Hybrid SOC AWS Dashboard**  
+A **modern Security Operations Center (SOC) dashboard** built with **Next.js**, designed for **real-time security event monitoring**, AWS integration, and Cognito authentication.  
 
-A modern Security Operations Center (SOC) dashboard built with Next.js, featuring real-time security event monitoring, AWS integration, and Cognito authentication.
+🚨 **Note:** While building a custom **SOC dashboard** on AWS can be fun and provide a tailored UI/UX experience, it may not be the most practical approach if **all security services are already hosted within AWS**. This project explores the hybrid approach, where cloud services integrate with **on-premise or external** security sources.
 
-## 🚀 Features
+---
 
-- **Real-time Security Monitoring**
-  - Live security event updates
-  - Event filtering and search
-  - Severity-based categorization
+## **🚀 Features**
 
-- **AWS Integration**
-  - GuardDuty integration
-  - SecurityHub integration
-  - CloudWatch Logs monitoring
+- **Real-time Security Monitoring**  
+  - Live security event updates  
+  - Event filtering and search  
+  - Severity-based categorization  
 
-- **Authentication & Security**
-  - AWS Cognito authentication
-  - Protected routes
-  - Secure session management
+- **AWS Integration** *(For Cloud Security Events)*  
+  - GuardDuty security alerts  
+  - SecurityHub compliance data  
+  - CloudWatch Logs monitoring  
 
-- **Modern UI/UX**
-  - Responsive design
-  - Dark/light mode support
-  - Interactive data visualization
+- **Hybrid SOC Capabilities** *(For On-Premise & External Sources)*  
+  - API integration with external security feeds  
+  - Custom log ingestion pipeline  
+  - Multi-cloud visibility  
 
-## 🛠️ Tech Stack
+- **Authentication & Security**  
+  - AWS Cognito authentication  
+  - Protected routes & secure session management  
 
-- **Frontend:** Next.js, React, TypeScript
-- **Styling:** Tailwind CSS
-- **Authentication:** AWS Cognito
-- **Cloud Services:** AWS GuardDuty, SecurityHub
-- **Real-time Updates:** WebSocket
+- **Modern UI/UX**  
+  - Responsive design  
+  - Dark/light mode support  
+  - Interactive data visualization  
 
-## 📦 Installation
+---
 
+## **🛠️ Tech Stack**
+- **Frontend:** Next.js, React, TypeScript  
+- **Styling:** Tailwind CSS  
+- **Authentication:** AWS Cognito  
+- **Cloud Services:** AWS GuardDuty, SecurityHub  
+- **Real-time Updates:** WebSockets  
+
+---
+
+## **📦 Installation**
 1. Clone the repository:
-```bash
-git clone https://github.com/your-username/soc-dashboard.git
-cd soc-dashboard
-```
+   ```bash
+   git clone https://github.com/paulinhx/soc-dashboard.git
+   cd soc-dashboard ´´´
 
-2. Install dependencies:
-```bash
+Install dependencies:
+
 npm install
-```
 
-3. Set up environment variables:
-Create a `.env.local` file in the root directory with the following variables:
-```env
+Set up environment variables:
+Create a .env.local file in the root directory with the following variables:
+
+
 NEXT_PUBLIC_AWS_REGION=your-region
 NEXT_PUBLIC_COGNITO_USER_POOL_ID=your-user-pool-id
 NEXT_PUBLIC_COGNITO_CLIENT_ID=your-client-id
 NEXT_PUBLIC_GUARDDUTY_DETECTOR_ID=your-detector-id
-```
+Run the development server:
 
-4. Run the development server:
-```bash
 npm run dev
-```
 
-## 🔧 Configuration
+## **🔧 Configuration**
 
 ### AWS Setup
 
-1. Create a Cognito User Pool
-2. Set up GuardDuty
-3. Configure SecurityHub
-4. Update environment variables
+Create a Cognito User Pool
+Enable GuardDuty for security threat detection
+Configure SecurityHub for compliance insights
+Update environment variables
+Hybrid SOC Setup (Optional but Recommended)
+Configure external SIEM logs (e.g., Splunk, Elastic, Graylog)
+Set up custom log ingestion (e.g., API gateway, S3, or self-hosted log collector)
+Enable multi-cloud security monitoring
 
-### Authentication
+## **🚦 Usage**
+Start the development server:
 
-The dashboard uses AWS Cognito for authentication. Ensure you have:
-- Configured Cognito User Pool
-- Set up App Client
-- Updated environment variables
-
-## 🚦 Usage
-
-1. Start the development server:
-```bash
 npm run dev
-```
 
-2. Open [http://localhost:3000](http://localhost:3000) in your browser
-3. Log in using your Cognito credentials
-4. Monitor security events in real-time
+Open http://localhost:3000 in your browser
+Log in using your Cognito credentials
+View real-time security events & hybrid logs
 
-## 📱 Screenshots
+## **📱 Screenshots**
 
 ![Screenshot 2025-02-22 at 14 30 08](https://github.com/user-attachments/assets/300e2294-c198-4834-ba4c-74477e964cbe)
 ![Screenshot 2025-02-22 at 13 26 36](https://github.com/user-attachments/assets/33a75a2e-199e-4522-baed-75f5ae969e00)
 
 
-## 📝 License
+## **🤝 Contributing**
+This project is open for feedback, but contributions are not open yet.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+## **📝 License**
+This project is licensed under the MIT License – see the LICENSE file for details.
 
-## 📧 Contact
+## **📧 Contact**
+Paul Desbats
+Project Repository: SOC Dashboard GitHub
 
-Your Name - Paul D.
-Project Link: [https://github.com/paulinhx/soc-dashboard](https://github.com/your-username/soc-dashboard)
+## **🙏 Acknowledgments**
+AWS Documentation for GuardDuty, SecurityHub, Cognito
+Next.js Documentation for frontend development
+Tailwind CSS for modern UI styling
+Hybrid SOC Strategy for improving security beyond cloud environments
+Why a Hybrid SOC?
+While AWS offers built-in security services, a fully cloud-hosted SOC dashboard might be redundant. Instead, this project explores how a hybrid security monitoring system can integrate on-premise logs, multi-cloud data, and AWS security insights into a single unified dashboard.
 
-## 🙏 Acknowledgments
 
-- AWS Documentation
-- Next.js Documentation
-- Tailwind CSS
+
