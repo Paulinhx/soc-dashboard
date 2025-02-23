@@ -90,9 +90,6 @@ npm run dev
 
 [Add screenshots of your dashboard here]
 
-## 🤝 Contributing
-
-Contributions are not opened yet!
 
 ## 📝 License
 
