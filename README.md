@@ -88,7 +88,8 @@ npm run dev
 
 ## 📱 Screenshots
 
-[Add screenshots of your dashboard here]
+![Screenshot 2025-02-22 at 14 30 08](https://github.com/user-attachments/assets/300e2294-c198-4834-ba4c-74477e964cbe)
+![Screenshot 2025-02-22 at 13 26 36](https://github.com/user-attachments/assets/33a75a2e-199e-4522-baed-75f5ae969e00)
 
 
 ## 📝 License
