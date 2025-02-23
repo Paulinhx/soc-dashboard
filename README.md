@@ -44,25 +44,29 @@ A **modern Security Operations Center (SOC) dashboard** built with **Next.js**, 
 
 ## **📦 Installation**
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/paulinhx/soc-dashboard.git
-   cd soc-dashboard ´´´
+   cd soc-dashboard 
 
-Install dependencies:
+2. Install dependencies:
 
-npm install
+   ```bash 
+   npm install
 
-Set up environment variables:
+3. Set up environment variables:
 Create a .env.local file in the root directory with the following variables:
 
+   ```bash 
+   NEXT_PUBLIC_AWS_REGION=your-region
+   NEXT_PUBLIC_COGNITO_USER_POOL_ID=your-user-pool-id
+   NEXT_PUBLIC_COGNITO_CLIENT_ID=your-client-id
+   NEXT_PUBLIC_GUARDDUTY_DETECTOR_ID=your-detector-id
 
-NEXT_PUBLIC_AWS_REGION=your-region
-NEXT_PUBLIC_COGNITO_USER_POOL_ID=your-user-pool-id
-NEXT_PUBLIC_COGNITO_CLIENT_ID=your-client-id
-NEXT_PUBLIC_GUARDDUTY_DETECTOR_ID=your-detector-id
-Run the development server:
+4. Run the development server:
 
-npm run dev
+   ```bash 
+   npm run dev
 
 ## **🔧 Configuration**
 
@@ -80,7 +84,8 @@ Enable multi-cloud security monitoring
 ## **🚦 Usage**
 Start the development server:
 
-npm run dev
+    ```bash
+       npm run dev
 
 Open http://localhost:3000 in your browser
 Log in using your Cognito credentials
@@ -95,19 +100,14 @@ View real-time security events & hybrid logs
 ## **🤝 Contributing**
 This project is open for feedback, but contributions are not open yet.
 
-## **📝 License**
-This project is licensed under the MIT License – see the LICENSE file for details.
-
-## **📧 Contact**
-Paul Desbats
-Project Repository: SOC Dashboard GitHub
 
 ## **🙏 Acknowledgments**
 AWS Documentation for GuardDuty, SecurityHub, Cognito
 Next.js Documentation for frontend development
 Tailwind CSS for modern UI styling
 Hybrid SOC Strategy for improving security beyond cloud environments
-Why a Hybrid SOC?
+
+## Why a Hybrid SOC?
 While AWS offers built-in security services, a fully cloud-hosted SOC dashboard might be redundant. Instead, this project explores how a hybrid security monitoring system can integrate on-premise logs, multi-cloud data, and AWS security insights into a single unified dashboard.
 
 
