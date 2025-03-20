@@ -72,14 +72,14 @@ Create a .env.local file in the root directory with the following variables:
 
 ### AWS Setup
 
-Create a Cognito User Pool
-Enable GuardDuty for security threat detection
-Configure SecurityHub for compliance insights
-Update environment variables
-Hybrid SOC Setup (Optional but Recommended)
-Configure external SIEM logs (e.g., Splunk, Elastic, Graylog)
-Set up custom log ingestion (e.g., API gateway, S3, or self-hosted log collector)
-Enable multi-cloud security monitoring
+Create a Cognito User Pool.
+Enable GuardDuty for security threat detection.
+Configure SecurityHub for compliance insights.
+Update environment variables.
+Hybrid SOC Setup (Optional but Recommended).
+Configure external SIEM logs (e.g., Splunk, Elastic, Graylog).
+Set up custom log ingestion (e.g., API gateway, S3, or self-hosted log collector).
+Enable multi-cloud security monitoring.
 
 ## **🚦 Usage**
 Start the development server:
@@ -87,9 +87,9 @@ Start the development server:
     ```bash
        npm run dev
 
-Open http://localhost:3000 in your browser
-Log in using your Cognito credentials
-View real-time security events & hybrid logs
+Open http://localhost:3000 in your browser.
+Log in using your Cognito credentials.
+View real-time security events & hybrid logs.
 
 ## **📱 Screenshots**
 
@@ -102,10 +102,14 @@ This project is open for feedback, but contributions are not open yet.
 
 
 ## **🙏 Acknowledgments**
-AWS Documentation for GuardDuty, SecurityHub, Cognito
-Next.js Documentation for frontend development
-Tailwind CSS for modern UI styling
-Hybrid SOC Strategy for improving security beyond cloud environments
+AWS Documentation:
+- GuardDuty 
+- SecurityHub 
+- Cognito
+Documentation for frontend development:
+- Next.js
+- Tailwind CSS for modern UI styling
+- Hybrid SOC Strategy for improving security beyond cloud environments
 
 ## Why a Hybrid SOC?
 While AWS offers built-in security services, a fully cloud-hosted SOC dashboard might be redundant. Instead, this project explores how a hybrid security monitoring system can integrate on-premise logs, multi-cloud data, and AWS security insights into a single unified dashboard.
