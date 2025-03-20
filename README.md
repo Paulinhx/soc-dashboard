@@ -106,6 +106,7 @@ AWS Documentation:
 - GuardDuty 
 - SecurityHub 
 - Cognito
+  
 Documentation for frontend development:
 - Next.js
 - Tailwind CSS for modern UI styling
